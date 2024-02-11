@@ -17,7 +17,7 @@ class Track {
     public String toString() {
         //// Replace the following statement with code that returns
         //// the data of this track according to the method's documentation.
-        return artist + ", " + title + ", " + duration;
+        return artist + ", " + title + ", " + formattedDuration(duration);
     }
 
     /** Returns this track's title. */
@@ -36,13 +36,24 @@ class Track {
     /** If this track's duration is shorter than the other track's duration
      *  returns true; otherwise returns false. */
     public boolean isShorterThan(Track other) {
-        return duration < other.duration;
+        if ( duration < other.getDuration()) {
+            return true; 
+        } else {
+            return false; 
+        }
+        
     }
 
     // Returns a string that represents the totalSeconds as "minutes:seconds",
     // Where seconds is always two digits. For example, "3:17" or "12:05".
     private String formattedDuration(int totalSeconds) {
-        //// replace the following statement with your code
-        return "";
+        int minutes = (int) (totalSeconds / 60) ; 
+        int second = totalSeconds - (minutes * 60); 
+        String minutesStr = "" + minutes; 
+        String secondStr = "" + second; 
+
+        String duration = String.format("%s:%02s", minutesStr, secondStr);
+
+        return duration; 
     }
 }
